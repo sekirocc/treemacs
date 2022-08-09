@@ -115,7 +115,8 @@ Used to save the values of `treemacs-indentation' and
 (defun treemacs--do-pulse (face)
   "Visually pulse current line using FACE."
   (pulse-momentary-highlight-one-line (point) face)
-  (advice-add 'pulse-momentary-unhighlight :after #'hl-line-highlight)
+  ;; sekirocc: this line will cause `xref-next-line` error with `Wrong type argument: overlayp, nil`, donot know why.
+  ;; (advice-add 'pulse-momentary-unhighlight :after #'hl-line-highlight)
   (advice-add 'pulse-lighten-highlight :after #'treemacs--pulse-png-advice))
 
 (defsubst treemacs-pulse-on-success (&rest log-args)
